@@ -207,8 +207,6 @@ For more info, see [https://www.dropbox.com/developers/reference/api#media](http
 
 Returns the thumbnail for an image
 
-PLEASE NOTE: this does not work yet :(
-
 For more info, see [https://www.dropbox.com/developers/reference/api#thumbnail](https://www.dropbox.com/developers/reference/api#thumbnail)
 
 ### Dropbox::API::File#download
