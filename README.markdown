@@ -11,6 +11,47 @@ Current state:
 
 First release, whole API covered.
 
+What differs this from the DropBox Ruby SDK?
+--------------------------------------------
+
+A few things:
+
+* It's using the ruby oauth gem, instead of reinventing the wheel and implementing OAuth communication
+* It treats files and directories as Ruby objects with appropriate classes, on which you can perform operations
+
+Consider the following example which takes all files with names like 'test.txt' and copies them with a suffix '.old'
+
+This is how it would look using the SDK:
+
+```ruby
+# Because you need the session with the right access token, you need to create one instance per user
+@session = DropboxSession.new(APP_TOKEN, APP_SECRET)
+@session.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
+@client = DropboxClient.new(@session, :app_folder)
+# The result is a hash, so we need to call a method on the client, supplying the right key from the hash
+@client.search('/', 'test.txt').each do |hash|
+  @client.file_copy(hash['path'], hash['path'] + ".old")
+end
+```
+
+With Dropbox::API, you can clean it up, first you put the app token and secret in a config or initializer file:
+
+```ruby
+Dropbox::API::Config.app_key    = APP_TOKEN
+Dropbox::API::Config.app_secret = APP_SECRET
+```
+
+And when you want to use it, just create a new client object with a specific access token and secret:
+
+```ruby
+# The app token and secret are read from config, that's all you need to have a client ready for one user
+@client = Dropbox::API::Client.new(:token  => ACCESS_TOKEN, :secret => ACCESS_SECRET)
+# The file is a Dropbox::API::File object, so you can call methods on it!
+@client.search('test.txt').each do |file|
+  file.copy(file.path + ".old2")
+end
+```
+
 Configuration
 -------------
 
