@@ -52,6 +52,13 @@ And when you want to use it, just create a new client object with a specific acc
 end
 ```
 
+What differs this from the dropbox gem?
+--------------------------------------
+
+Dropbox::API does not extend the Ruby primitives, like the dropbox gem:
+
+https://github.com/RISCfuture/dropbox/tree/master/lib/dropbox/extensions
+
 Configuration
 -------------
 
