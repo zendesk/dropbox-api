@@ -32,14 +32,14 @@ module Dropbox
         def get_raw(endpoint, path, data = {}, headers = {})
           query = Dropbox::API::Util.query(data)
           request(:raw => true) do
-            token(endpoint).get "#{Dropbox::API::Config.prefix}#{URI.parse(URI.encode(path))}?#{query}", headers
+            token(endpoint).get "#{Dropbox::API::Config.prefix}#{URI.parse(URI.encode(path))}?#{URI.parse(URI.encode(query))}", headers
           end
         end
 
         def get(endpoint, path, data = {}, headers = {})
           query = Dropbox::API::Util.query(data)
           request do
-            token(endpoint).get "#{Dropbox::API::Config.prefix}#{URI.parse(URI.encode(path))}?#{query}", headers
+            token(endpoint).get "#{Dropbox::API::Config.prefix}#{URI.parse(URI.encode(path))}?#{URI.parse(URI.encode(query))}", headers
           end
         end
 
