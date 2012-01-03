@@ -11,6 +11,21 @@ Current state:
 
 First release, whole API covered.
 
+Installation
+------------
+
+Dropbox::API is available on RubyGems, so:
+
+```
+gem install dropbox-api
+```
+
+Or in your Gemfile:
+
+```ruby
+gem "dropbox-api"
+```
+
 Configuration
 -------------
 
