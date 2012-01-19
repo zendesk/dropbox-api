@@ -13,7 +13,7 @@ module Dropbox
         self.update response
       end
 
-      def delete(options = {})
+      def destroy(options = {})
         response = client.raw.delete({ :path => self.path }.merge(options))
         self.update response
       end

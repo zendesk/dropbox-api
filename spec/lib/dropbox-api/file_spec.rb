@@ -32,10 +32,10 @@ describe Dropbox::API::File do
 
   end
 
-  describe "#delete" do
+  describe "#destroy" do
 
-    it "deletes the file properly" do
-      @file.delete
+    it "destroys the file properly" do
+      @file.destroy
       @file.is_deleted.should == true
     end
 

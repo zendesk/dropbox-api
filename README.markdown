@@ -11,6 +11,15 @@ Current state:
 
 First release, whole API covered.
 
+Important!!!
+------------
+
+From version 0.2.0, Dropbox::API::File#delete and Dropbox::API::Dir#delete *are gone*!!
+
+The reason is that it's based on Hashie::Mash and was screwing Hash#delete.
+
+It is replaced with Dropbox::API::File#destroy and Dropbox::API::Dir#destroy.
+
 Installation
 ------------
 
@@ -230,12 +239,12 @@ Moves a file/directory to a new specified filename
 file.move 'newfilename.txt' # => #<Dropbox::API::File>
 ```
 
-### Dropbox::API::File#delete | Dropbox::API::Dir#delete
+### Dropbox::API::File#destroy | Dropbox::API::Dir#destroy
 
 Deletes a file/directory
 
 ```ruby
-file.delete 'newfilename.txt' # => #<Dropbox::API::File>
+file.destroy 'newfilename.txt' # => #<Dropbox::API::File>
 ```
 
 
