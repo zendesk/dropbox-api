@@ -7,6 +7,7 @@ module Dropbox
 
         def download(path, options = {})
           root     = options.delete(:root) || Dropbox::API::Config.mode
+          path     = Dropbox::API::Util.escape(path)
           url      = ['', "files", root, path].compact.join('/')
           connection.get_raw(:content, url)
         end
@@ -14,6 +15,7 @@ module Dropbox
         def upload(path, data, options = {})
           root     = options.delete(:root) || Dropbox::API::Config.mode
           query    = Dropbox::API::Util.query(options)
+          path     = Dropbox::API::Util.escape(path)
           url      = ['', "files_put", root, path].compact.join('/')
           response = connection.put(:content, "#{url}?#{query}", data, {
             'Content-Type'   => "application/octet-stream",

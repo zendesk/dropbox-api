@@ -1,3 +1,4 @@
+# encoding: utf-8
 require "spec_helper"
 
 describe Dropbox::API::Client do
@@ -49,6 +50,20 @@ describe Dropbox::API::Client do
       response.should be_an_instance_of(Dropbox::API::Dir)
     end
 
+    it "creates dirs with tricky characters" do
+      dirname  = "test/test-dir |!@\#$%^&*{b}[].;'.,<>?: #{Dropbox::Spec.namespace}"
+      response = @client.mkdir dirname
+      response.path.should == dirname.gsub(/[\\\:\?\*\<\>\"\|]+/, '')
+      response.should be_an_instance_of(Dropbox::API::Dir)
+    end
+
+    it "creates dirs with utf8 characters" do
+      dirname  = "test/test-dir łółą #{Dropbox::Spec.namespace}"
+      response = @client.mkdir dirname
+      response.path.should == dirname
+      response.should be_an_instance_of(Dropbox::API::Dir)
+    end
+
   end
 
   describe "#upload" do
@@ -60,6 +75,19 @@ describe Dropbox::API::Client do
       response.bytes.should == 9
     end
 
+    it "uploads the file with tricky characters" do
+      filename = "test/test ,|!@\#$%^&*{b}[].;'.,<>?:-#{Dropbox::Spec.namespace}.txt"
+      response = @client.upload filename, "Some file"
+      response.path.should == filename
+      response.bytes.should == 9
+    end
+
+    it "uploads the file with utf8" do
+      filename = "test/test łołąó-#{Dropbox::Spec.namespace}.txt"
+      response = @client.upload filename, "Some file"
+      response.path.should == filename
+      response.bytes.should == 9
+    end
   end
 
   describe "#search" do
@@ -77,6 +105,7 @@ describe Dropbox::API::Client do
   describe "#download" do
 
     it "downloads a file from Dropbox" do
+      @client.upload 'test/test.txt', "Some file"
       file = @client.download 'test/test.txt'
       file.should == "Some file"
     end

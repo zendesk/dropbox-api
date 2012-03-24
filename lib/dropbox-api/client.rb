@@ -30,6 +30,8 @@ module Dropbox
       end
 
       def mkdir(path)
+        # Remove the characters not allowed by Dropbox
+        path = path.gsub(/[\\\:\?\*\<\>\"\|]+/, '')
         response = raw.create_folder :path => path
         Dropbox::API::Dir.init(response, self)
       end
