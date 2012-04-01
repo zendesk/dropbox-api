@@ -26,10 +26,8 @@ describe Dropbox::API::Client do
   end
 
   describe "#find" do
-    
-    before do
-      @client = Dropbox::Spec.instance
 
+    before do
       @filename = "test/spec-find-file-test-#{Time.now.to_i}.txt"
       @file = @client.upload @filename, "spec file"
 
