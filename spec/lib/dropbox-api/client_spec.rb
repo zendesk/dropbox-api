@@ -57,7 +57,7 @@ describe Dropbox::API::Client do
     end
 
     it "returns a single item array of if we ls a file" do
-      result     = @client.ls
+      result     = @client.ls(Dropbox::Spec.test_dir)
       first_file = result.detect { |f| f.class == Dropbox::API::File }
       result     = @client.ls first_file.path
       result.should be_an_instance_of(Array)
