@@ -11,7 +11,7 @@ module Dropbox
 
       def self.add_method(method, action, options = {})
         # Add the default root bit, but allow it to be disabled by a config option
-        root = options[:root] == false ? '' : "options[:root] ||= '#{Dropbox::API::Config.mode}'"
+        root = options[:root] == false ? '' : "options[:root] ||= Dropbox::API::Config.mode"
         self.class_eval <<-STR
           def #{options[:as] || action}(options = {})
             #{root}
