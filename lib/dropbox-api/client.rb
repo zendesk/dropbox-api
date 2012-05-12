@@ -44,6 +44,12 @@ module Dropbox
         Dropbox::API::Object.convert(results, self)
       end
 
+      def delta
+        response = raw.delta
+        entries = response['entries'].map { |entry| entry.last }
+        Dropbox::API::Object.convert(entries, self)
+      end
+
     end
 
   end
