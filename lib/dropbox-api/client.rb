@@ -44,10 +44,21 @@ module Dropbox
         Dropbox::API::Object.convert(results, self)
       end
 
-      def delta
-        response = raw.delta
-        entries = response['entries'].map { |entry| entry.last }
-        Dropbox::API::Object.convert(entries, self)
+      def delta(cursor=nil)
+        entries  = []
+        has_more = true
+        params   = cursor ? {:cursor => cursor} : {}
+        while has_more
+          response        = raw.delta(params)
+          params[:cursor] = response['cursor']
+          has_more        = response['has_more']
+          entries.push     *response['entries']
+        end
+
+        files = entries.map do |entry|
+          entry.last || {:is_deleted => true, :path => entry.first}
+        end
+        [params[:cursor], Dropbox::API::Object.convert(files, self)]
       end
 
     end
