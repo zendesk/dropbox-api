@@ -15,6 +15,10 @@ module Dropbox
           data.inject([]) { |memo, entry| memo.push(entry.join('=')); memo }.join('&')
         end
 
+        def remove_double_slashes(path)
+          path.gsub('//', '/')
+        end
+
       end
 
     end

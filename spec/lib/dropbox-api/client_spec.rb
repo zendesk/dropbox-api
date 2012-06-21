@@ -116,12 +116,24 @@ describe Dropbox::API::Client do
 
   describe "#search" do
 
-    it "finds a file" do
+    let(:term) { "searchable-test-#{Dropbox::Spec.namespace}" }
+
+    before do
       filename = "#{Dropbox::Spec.test_dir}/searchable-test-#{Dropbox::Spec.namespace}.txt"
       @client.upload filename, "Some file"
-      response = @client.search "searchable-test-#{Dropbox::Spec.namespace}", :path => "#{Dropbox::Spec.test_dir}"
-      response.size.should == 1
-      response.first.class.should == Dropbox::API::File
+    end
+
+    after do
+      @response.size.should == 1
+      @response.first.class.should == Dropbox::API::File
+    end
+
+    it "finds a file" do
+      @response = @client.search term, :path => "#{Dropbox::Spec.test_dir}"
+    end
+
+    it "works if leading slash is present in path" do
+      @response = @client.search term, :path => "/#{Dropbox::Spec.test_dir}"
     end
 
   end

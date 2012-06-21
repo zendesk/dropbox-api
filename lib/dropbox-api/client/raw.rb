@@ -23,6 +23,7 @@ module Dropbox
       def request(endpoint, method, action, data = {})
         action.sub! ':root', data.delete(:root) if action.match ':root'
         action.sub! ':path', Dropbox::API::Util.escape(data.delete(:path)) if action.match ':path'
+        action = Dropbox::API::Util.remove_double_slashes(action)
         connection.send(method, endpoint, action, data)
       end
 
