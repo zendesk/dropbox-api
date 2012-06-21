@@ -43,7 +43,12 @@ module Dropbox
         results = raw.search({ :query => term }.merge(options))
         Dropbox::API::Object.convert(results, self)
       end
-            
+
+      def delta(cursor = nil, options = {})
+        response = cursor ? raw.delta({ :cursor => cursor }.merge(options)) : raw.delta(options)
+        Dropbox::API::Object.init(response, self)
+      end
+
     end
 
   end
