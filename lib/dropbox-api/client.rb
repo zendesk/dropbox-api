@@ -58,7 +58,8 @@ module Dropbox
         files = entries.map do |entry|
           entry.last || {:is_deleted => true, :path => entry.first}
         end
-        [params[:cursor], Dropbox::API::Object.convert(files, self)]
+
+        Delta.new(params[:cursor], Dropbox::API::Object.convert(files, self))
       end
 
     end

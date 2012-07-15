@@ -171,23 +171,26 @@ describe Dropbox::API::Client do
 
   describe "#delta" do
     it "returns a cursor and list of files" do
-      filename   = "test/delta-test-#{Time.now.to_i}.txt"
+      filename = "#{Dropbox::Spec.test_dir}/delta-test-#{Dropbox::Spec.namespace}.txt"
       @client.upload filename, 'Some file'
-      cursor, files = @client.delta
+      response = @client.delta
+      cursor, files = response.cursor, response.entries
       cursor.should be_an_instance_of(String)
       files.should be_an_instance_of(Array)
       files.first.should be_an_instance_of(Dropbox::API::File)
     end
 
     it "returns the files that have changed since the cursor was made" do
-      filename   = "test/delta-test-#{Time.now.to_i}.txt"
-      delete_filename = "test/delta-test-#{Time.now.to_i}-delete.txt"
+      filename = "#{Dropbox::Spec.test_dir}/delta-test-#{Dropbox::Spec.namespace}.txt"
+      delete_filename = "#{Dropbox::Spec.test_dir}/delta-test-delete-#{Dropbox::Spec.namespace}.txt"
       @client.upload delete_filename, 'Some file'
-      cursor, files = @client.delta
+      response = @client.delta
+      cursor, files = response.cursor, response.entries
       files.last.path.should == delete_filename
       files.last.destroy
       @client.upload filename, 'Another file'
-      cursor, files = @client.delta(cursor)
+      response = @client.delta(cursor)
+      cursor, files = response.cursor, response.entries
       files.length.should == 2
       files.first.is_deleted.should == true
       files.first.path.should == delete_filename
