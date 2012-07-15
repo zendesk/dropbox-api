@@ -223,13 +223,17 @@ client.search 'pattern', :path => 'somedir' # => [#<Dropbox::API::File>, #<Dropb
 Returns a cursor and a list of files that have changed since the cursor was generated.
 
 ```ruby
-client.delta 'abc123' # => ['def456', [#<Dropbox::API::File>, #<Dropbox::API::Dir>]]
+delta = client.delta 'abc123'
+delta.cursor # => 'def456'
+delta.entries # => [#<Dropbox::API::File>, #<Dropbox::API::Dir>]
 ```
 
 When called without a cursor, it returns all the files.
 
 ```ruby
-client.delta # => ['abc123', [#<Dropbox::API::File>, #<Dropbox::API::Dir>]]
+delta = client.delta 'abc123'
+delta.cursor # => 'abc123'
+delta.entries # => [#<Dropbox::API::File>, #<Dropbox::API::Dir>]
 ```
 
 Dropbox::API::File and Dropbox::API::Dir methods
