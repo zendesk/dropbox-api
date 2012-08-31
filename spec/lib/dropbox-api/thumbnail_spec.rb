@@ -20,8 +20,8 @@ describe Dropbox::API::File do
       @io.rewind
 
       jpeg = JPEG.new(@io)
-      jpeg.height.should == 72
-      jpeg.width.should == 72
+      jpeg.height.should == 64
+      jpeg.width.should == 64
     end
 
   end

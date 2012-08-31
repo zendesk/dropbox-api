@@ -177,7 +177,7 @@ describe Dropbox::API::Client do
       cursor, files = response.cursor, response.entries
       cursor.should be_an_instance_of(String)
       files.should be_an_instance_of(Array)
-      files.first.should be_an_instance_of(Dropbox::API::File)
+      files.last.should be_an_instance_of(Dropbox::API::File)
     end
 
     it "returns the files that have changed since the cursor was made" do
