@@ -25,7 +25,10 @@ module Dropbox
         end
 
         def copy_from_copy_ref(copy_ref, to, options = {})
-          raw.copy({ :from_copy_ref => copy_ref, :to_path => to }.merge(options))
+          raw.copy({ 
+            :from_copy_ref => copy_ref, 
+            :to_path => to 
+          }.merge(options))
         end
 
       end

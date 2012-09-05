@@ -1,5 +1,5 @@
 require "oauth"
-require "yajl"
+require "multi_json"
 require "hashie"
 
 module Dropbox
@@ -17,5 +17,6 @@ require "dropbox-api/objects/object"
 require "dropbox-api/objects/fileops"
 require "dropbox-api/objects/file"
 require "dropbox-api/objects/dir"
+require "dropbox-api/objects/delta"
 require "dropbox-api/connection"
 require "dropbox-api/client"
