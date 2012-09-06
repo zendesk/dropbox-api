@@ -50,7 +50,6 @@ module Dropbox
             yield offset, upload if block_given?
           end
           
-          
           query = Dropbox::API::Util.query({:upload_id => options[:upload_id]})
           
           response = connection.post(:content, "#{commit_url}?#{query}", "", {

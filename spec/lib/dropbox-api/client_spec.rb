@@ -118,19 +118,32 @@ describe Dropbox::API::Client do
   describe "#chunked_upload" do
 
     before do
+      @filename = "/tmp/dropbox-api-largefile-test"
       @size = 5*1024*1024 # 5MB, to test the 4MB chunk size
-      @file = File.open("/tmp/dropbox-api-test", "w") {|f| f.write "a"*@size}
+      @file = File.open(@filename, "w") {|f| f.write "a"*@size}
     end
     
     it "puts a 5MB file in dropbox" do
-      filename = "#{Dropbox::Spec.test_dir}/test-#{Dropbox::Spec.namespace}.txt"
-      response = @client.chunked_upload filename, File.open("/tmp/dropbox-api-test")
+      filename = "#{Dropbox::Spec.test_dir}/test-5MB-#{Dropbox::Spec.namespace}.txt"
+      response = @client.chunked_upload filename, File.open(@filename)
+      response.path.should == filename
+      response.bytes.should == @size
+    end
+
+    it "yields current offset and upload id" do
+      filename = "#{Dropbox::Spec.test_dir}/test-yield-#{Dropbox::Spec.namespace}.txt"
+      response = @client.chunked_upload filename, File.open(@filename) do |offset, upload|
+        offset.should be > 0
+        puts offset
+        puts upload.inspect
+        upload[:upload_id].length.should eq(22)
+      end
       response.path.should == filename
       response.bytes.should == @size
     end
     
     after do
-      FileUtils.rm "/tmp/dropbox-api-test"
+      FileUtils.rm @filename
     end
     
   end
