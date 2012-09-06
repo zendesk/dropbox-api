@@ -194,6 +194,27 @@ Stores a file with a provided body under a provided name and returns a Dropbox::
 client.upload 'file.txt', 'file body' # => #<Dropbox::API::File>
 ```
 
+### Dropbox::API::Client#chunked_upload
+
+Stores a file using the chunked upload endpoint. This method issues multiple requests, and optionally takes a block, passing in the current upload byte offset and a unique ID usable for resuming uploads. Use this for uploading large files.
+
+For more info, see [https://www.dropbox.com/developers/reference/api#chunked-upload](https://www.dropbox.com/developers/reference/api#chunked-upload)
+
+Standard use:
+
+```ruby
+client.chunked_upload 'file.txt', 'file or IO object' # => #<Dropbox::API::File>
+```
+
+Using a block to show upload progress and save the upload id:
+
+```ruby
+client.chunked_upload 'file.txt', 'file or IO object' do |offset, resp|
+  @upload_id = resp[:upload_id]
+  puts "Uploaded #{offset} bytes"
+end
+```
+
 ### Dropbox::API::Client#download
 
 Downloads a file with a provided name and returns it's content
