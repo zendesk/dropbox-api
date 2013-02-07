@@ -22,6 +22,16 @@ module Dropbox
         self['path'].sub(/^\//, '')
       end
 
+      def share_url(options = {})
+        response = client.raw.shares({ :path => self.path }.merge(options))
+        Dropbox::API::Object.init(response, client)
+      end
+
+      def direct_url(options = {})
+        response = client.raw.media({ :path => self.path }.merge(options))
+        Dropbox::API::Object.init(response, client)
+      end
+
     end
 
   end
