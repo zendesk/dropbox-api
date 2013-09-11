@@ -54,7 +54,7 @@ describe Dropbox::API::Connection do
       response = double :code => 400, :body => '{ "error": "bad request foo" }'
       lambda do
         @connection.request { response }
-      end.should raise_error(Dropbox::API::Error, '400 - bad request foo')
+      end.should raise_error(Dropbox::API::Error::BadInput, '400 - Bad input parameter - bad request foo')
     end
 
     it "raises a Dropbox::API::Error when the response is a 406" do
@@ -63,6 +63,14 @@ describe Dropbox::API::Connection do
         @connection.request { response }
       end.should raise_error(Dropbox::API::Error, '406 - bad request bar')
     end
+
+    it "raises a Dropbox::API::Error when the response is a 406" do
+      response = double :code => 429, :body => '{ "error": "rate limited" }'
+      lambda do
+        @connection.request { response }
+      end.should raise_error(Dropbox::API::Error::RateLimit, '429 - Rate Limiting in affect')
+    end
+
 
     it "returns the raw response if :raw => true is provided" do
       response = double :code => 200, :body => '{ "something": "more" }'

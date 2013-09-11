@@ -10,6 +10,9 @@ module Dropbox
           raise Dropbox::API::Error::ConnectionFailed if !response
           status = response.code.to_i
           case status
+            when 400
+              parsed = MultiJson.decode(response.body)
+              raise Dropbox::API::Error::BadInput.new("400 - Bad input parameter - #{parsed['error']}")
             when 401
               raise Dropbox::API::Error::Unauthorized.new("401 - Bad or expired token")
             when 403
@@ -17,11 +20,14 @@ module Dropbox
               raise Dropbox::API::Error::Forbidden.new('403 - Bad OAuth request')
             when 404
               raise Dropbox::API::Error::NotFound.new("404 - Not found")
-            when 400, 405, 406
+            when 405
+              parsed = MultiJson.decode(response.body)
+              raise Dropbox::API::Error.new("405 - Request method not expected - #{parsed['error']}")
+            when 406
               parsed = MultiJson.decode(response.body)
               raise Dropbox::API::Error.new("#{status} - #{parsed['error']}")
             when 429
-              raise Dropbox::API::Error.new('429 - Rate Limiting in affect')
+              raise Dropbox::API::Error::RateLimit.new('429 - Rate Limiting in affect')
             when 300..399
               raise Dropbox::API::Error::Redirect.new("#{status} - Redirect Error")
             when 503
