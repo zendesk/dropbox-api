@@ -19,49 +19,49 @@ describe Dropbox::API::Connection do
       response = mock :code => 401, :body => '{ "a":1}'
       lambda do
         @connection.request { response }
-      end.should raise_error(Dropbox::API::Error::Unauthorized)
+      end.should raise_error(Dropbox::API::Error::Unauthorized, '401 - Bad or expired token')
     end
 
     it "raises a Dropbox::API::Error::Forbidden when the response is a 403" do
       response = mock :code => 403, :body => '{ "a":1}'
       lambda do
         @connection.request { response }
-      end.should raise_error(Dropbox::API::Error::Forbidden)
+      end.should raise_error(Dropbox::API::Error::Forbidden, 'Test')
     end
 
     it "raises a Dropbox::API::Error::NotFound when the response is a 404" do
       response = mock :code => 404, :body => '{ "a":1}'
       lambda do
         @connection.request { response }
-      end.should raise_error(Dropbox::API::Error::NotFound)
+      end.should raise_error(Dropbox::API::Error::NotFound, 'Test')
     end
 
     it "raises a Dropbox::API::Error when the response is a 3xx" do
       response = mock :code => 301, :body => '{ "a":1}'
       lambda do
         @connection.request { response }
-      end.should raise_error(Dropbox::API::Error::Redirect)
+      end.should raise_error(Dropbox::API::Error::Redirect, 'Tests')
     end
 
     it "raises a Dropbox::API::Error when the response is a 5xx" do
       response = mock :code => 500, :body => '{ "a":1}'
       lambda do
         @connection.request { response }
-      end.should raise_error(Dropbox::API::Error)
+      end.should raise_error(Dropbox::API::Error, 'Test')
     end
 
     it "raises a Dropbox::API::Error when the response is a 400" do
       response = mock :code => 400, :body => '{ "error": "bad request" }'
       lambda do
         @connection.request { response }
-      end.should raise_error(Dropbox::API::Error)
+      end.should raise_error(Dropbox::API::Error, 'Test')
     end
 
     it "raises a Dropbox::API::Error when the response is a 406" do
       response = mock :code => 406, :body => '{ "error": "bad request" }'
       lambda do
         @connection.request { response }
-      end.should raise_error(Dropbox::API::Error)
+      end.should raise_error(Dropbox::API::Error, 'Test')
     end
 
     it "returns the raw response if :raw => true is provided" do

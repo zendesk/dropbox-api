@@ -11,19 +11,27 @@ module Dropbox
           status = response.code.to_i
           case status
             when 401
-              raise Dropbox::API::Error::Unauthorized
+              raise Dropbox::API::Error::Unauthorized.new("401 - Bad or expired token")
             when 403
               parsed = MultiJson.decode(response.body)
               raise Dropbox::API::Error::Forbidden.new(parsed["error"])
             when 404
-              raise Dropbox::API::Error::NotFound
-            when 400, 406
+              raise Dropbox::API::Error::NotFound.new("404 - Not found")
+            when 400, 405, 406
               parsed = MultiJson.decode(response.body)
               raise Dropbox::API::Error.new(parsed["error"])
+            when 429
+              raise Dropbox::API::Error.new('429 - Rate Limiting in affect')
             when 300..399
               raise Dropbox::API::Error::Redirect
+            when 503
+              parsed = MultiJson.decode(response.body)
+              raise Dropbox::API::Error.new("503 - Possible Rate Limiting: #{parsed["error"]}")
+            when 507
+              raise Dropbox::API::Error::StorageQuota.new("507 - User is over Dropbox storage quota.")
             when 500..599
-              raise Dropbox::API::Error
+              parsed = MultiJson.decode(response.body)
+              raise Dropbox::API::Error.new("#{status} - #{parsed["error"]}")
             else
               options[:raw] ? response.body : MultiJson.decode(response.body)
           end

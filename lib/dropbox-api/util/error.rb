@@ -9,6 +9,7 @@ module Dropbox
       class Forbidden < Error; end
       class NotFound < Error; end
       class Redirect < Error; end
+      class StorageQuota < Error; end
 
     end
 
