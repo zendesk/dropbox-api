@@ -22,7 +22,7 @@ module Dropbox
               raise Dropbox::API::Error::NotFound.new("404 - Not found")
             when 405
               parsed = MultiJson.decode(response.body)
-              raise Dropbox::API::Error.new("405 - Request method not expected - #{parsed['error']}")
+              raise Dropbox::API::Error::WrongMethod.new("405 - Request method not expected - #{parsed['error']}")
             when 406
               parsed = MultiJson.decode(response.body)
               raise Dropbox::API::Error.new("#{status} - #{parsed['error']}")

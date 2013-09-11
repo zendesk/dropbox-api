@@ -36,6 +36,13 @@ describe Dropbox::API::Connection do
       end.should raise_error(Dropbox::API::Error::NotFound, '404 - Not found')
     end
 
+    it "raises a Dropbox::API::Error::WrongMethod when the response is a 405" do
+      response = double :code => 405, :body => '{ "error": "The requested method GET is not allowed for the URL /foo/." }'
+      lambda do
+        @connection.request { response }
+      end.should raise_error(Dropbox::API::Error::WrongMethod, '405 - Request method not expected - The requested method GET is not allowed for the URL /foo/.')
+    end
+
     it "raises a Dropbox::API::Error when the response is a 3xx" do
       response = double :code => 301, :body => '{ "a":1}'
       lambda do
@@ -69,6 +76,20 @@ describe Dropbox::API::Connection do
       lambda do
         @connection.request { response }
       end.should raise_error(Dropbox::API::Error::RateLimit, '429 - Rate Limiting in affect')
+    end
+
+    it "raises a Dropbox::API::Error when the response is a 503" do
+      response = double :code => 503, :body => '{ "error": "rate limited" }'
+      lambda do
+        @connection.request { response }
+      end.should raise_error(Dropbox::API::Error, '503 - Possible Rate Limiting: rate limited')
+    end
+
+    it "raises a Dropbox::API::Error::StorageQuota when the response is a 507" do
+      response = double :code => 507, :body => '{ "error": "quote limit" }'
+      lambda do
+        @connection.request { response }
+      end.should raise_error(Dropbox::API::Error, '507 - Dropbox storage quota exceeded.')
     end
 
 
