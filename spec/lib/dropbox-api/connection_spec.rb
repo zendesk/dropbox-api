@@ -82,7 +82,7 @@ describe Dropbox::API::Connection do
       response = double :code => 503, :body => '{ "error": "rate limited" }', :headers => '{ "Retry-After": "50" }'
       lambda do
         @connection.request { response }
-      end.should raise_error(Dropbox::API::Error, '503 - Possible Rate Limiting: rate limited')
+      end.should raise_error(Dropbox::API::Error, '503 - rate limited. Retry after: 50')
     end
 
     it "raises a Dropbox::API::Error::StorageQuota when the response is a 507" do
