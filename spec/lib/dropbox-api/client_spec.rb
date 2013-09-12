@@ -132,12 +132,18 @@ describe Dropbox::API::Client do
 
     it "yields current offset and upload id" do
       filename = "#{Dropbox::Spec.test_dir}/test-yield-#{Dropbox::Spec.namespace}.txt"
+      log_offset = ""
+      log_upload = ""
       response = @client.chunked_upload filename, File.open(@filename) do |offset, upload|
         offset.should be > 0
+        log_offset += "#{offset.to_s},"
+        log_upload += upload.inspect
         upload[:upload_id].length.should eq(22)
       end
       response.path.should == filename
       response.bytes.should == @size
+      log_offset.should match(/[\d]{7},[\d]{7},/)
+      log_upload.should include("Dropbox::API::Object","upload_id=")
     end
 
     after do
