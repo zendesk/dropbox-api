@@ -3,12 +3,12 @@ $:.push File.expand_path("../lib", __FILE__)
 require "dropbox-api/version"
 
 Gem::Specification.new do |s|
-  s.name        = "dropbox-api"
+  s.name        = "dropbox-api-petems"
   s.version     = Dropbox::API::VERSION
-  s.authors     = ["Marcin Bunsch"]
-  s.email       = ["marcin@futuresimple.com"]
-  s.homepage    = "http://github.com/futuresimple/dropbox-api"
-  s.summary     = "A Ruby client for the DropBox REST API."
+  s.authors     = ["Peter Souter"]
+  s.email       = ["p.morsou@gmail.com"]
+  s.homepage    = "http://github.com/petems/dropbox-api-petems"
+  s.summary     = "A Ruby client for the DropBox REST API (Originally by marcinbunsch, forked by petems)"
   s.description = "To deliver a more Rubyesque experience when using the DropBox API."
 
   s.rubyforge_project = "dropbox-api"
