@@ -122,7 +122,7 @@ describe Dropbox::API::Client do
       @size = 5*1024*1024 # 5MB, to test the 4MB chunk size
       @file = File.open(@filename, "w") {|f| f.write "a"*@size}
     end
-    
+
     it "puts a 5MB file in dropbox" do
       filename = "#{Dropbox::Spec.test_dir}/test-5MB-#{Dropbox::Spec.namespace}.txt"
       response = @client.chunked_upload filename, File.open(@filename)
@@ -134,18 +134,16 @@ describe Dropbox::API::Client do
       filename = "#{Dropbox::Spec.test_dir}/test-yield-#{Dropbox::Spec.namespace}.txt"
       response = @client.chunked_upload filename, File.open(@filename) do |offset, upload|
         offset.should be > 0
-        puts offset
-        puts upload.inspect
         upload[:upload_id].length.should eq(22)
       end
       response.path.should == filename
       response.bytes.should == @size
     end
-    
+
     after do
       FileUtils.rm @filename
     end
-    
+
   end
 
   describe "#search" do
@@ -177,10 +175,10 @@ describe Dropbox::API::Client do
     it "copies a file from a copy_ref" do
       filename = "test/searchable-test-#{Dropbox::Spec.namespace}.txt"
       @client.upload filename, "Some file"
-      response = @client.search "searchable-test-#{Dropbox::Spec.namespace}", :path => 'test'      
+      response = @client.search "searchable-test-#{Dropbox::Spec.namespace}", :path => 'test'
       ref = response.first.copy_ref['copy_ref']
       @client.copy_from_copy_ref ref, "#{filename}.copied"
-      response = @client.search "searchable-test-#{Dropbox::Spec.namespace}.txt.copied", :path => 'test'   
+      response = @client.search "searchable-test-#{Dropbox::Spec.namespace}.txt.copied", :path => 'test'
       response.size.should == 1
       response.first.class.should == Dropbox::API::File
     end
