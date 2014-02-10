@@ -11,18 +11,23 @@ Gem::Specification.new do |s|
   s.summary     = "A Ruby client for the DropBox REST API (Originally by marcinbunsch, forked by petems)"
   s.description = "To deliver a more Rubyesque experience when using the DropBox API (forked by petems)."
 
+  s.files         = `git ls-files`.split("\n")
+  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
+  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
+  s.require_paths = ["lib"]
+
   s.add_dependency 'multi_json', '1.7.9'
   s.add_dependency 'oauth', '0.4.7'
   s.add_dependency 'hashie', '2.0.5'
 
   s.add_development_dependency 'rspec','2.14.1'
   s.add_development_dependency 'rake', '10.1.0'
-  s.add_development_dependency 'simplecov', '0.7.1'
-  s.add_development_dependency 'ruby-debug19', '0.11.6'
-  s.add_development_dependency 'yajl-ruby', '1.1.0'
+  s.add_development_dependency 'rake', '10.1.0'
+  s.add_development_dependency 'simplecov', '~> 0.8.2'
+  s.add_development_dependency 'yajl-ruby', '~> 1.2.0'
 
-  s.files         = `git ls-files`.split("\n")
-  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
-  s.require_paths = ["lib"]
+  if RUBY_VERSION < "1.9"
+    s.add_development_dependency 'ruby-debug19'
+  end
+
 end
