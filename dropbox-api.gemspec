@@ -16,6 +16,9 @@ Gem::Specification.new do |s|
   s.add_dependency 'multi_json'
   s.add_dependency 'oauth'
   s.add_dependency 'hashie'
+  if RUBY_VERSION < "1.9"
+    s.add_development_dependency 'ruby-debug19' 
+  end
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
