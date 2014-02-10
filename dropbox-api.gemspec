@@ -11,8 +11,6 @@ Gem::Specification.new do |s|
   s.summary     = "A Ruby client for the DropBox REST API (Originally by marcinbunsch, forked by petems)"
   s.description = "To deliver a more Rubyesque experience when using the DropBox API (forked by petems)."
 
-  s.rubyforge_project = "dropbox-api"
-
   s.add_dependency 'multi_json', '1.7.9'
   s.add_dependency 'oauth', '0.4.7'
   s.add_dependency 'hashie', '2.0.5'
