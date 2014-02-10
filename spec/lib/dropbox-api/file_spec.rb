@@ -1,15 +1,11 @@
 require "spec_helper"
 
-describe Dropbox::API::File do
+describe Dropbox::API::File, vcr: true do
 
   before do
     @client = Dropbox::Spec.instance
-    @filename = "#{Dropbox::Spec.test_dir}/spec-test-#{Time.now.to_i}.txt"
+    @filename = "qux.txt"
     @file = @client.upload @filename, "spec file"
-  end
-
-  after do
-    # @file.delete
   end
 
   describe "#copy" do

@@ -1,15 +1,11 @@
 require "spec_helper"
 
-describe Dropbox::API::Dir do
+describe Dropbox::API::Dir, vcr: true do
 
   before do
     @client = Dropbox::Spec.instance
-    @dirname = "#{Dropbox::Spec.test_dir}/spec-dir-test-#{Time.now.to_i}"
+    @dirname = "dir-spec-tests"
     @dir = @client.mkdir @dirname
-  end
-
-  after do
-    # @dir.delete
   end
 
   describe "#copy" do
@@ -37,6 +33,16 @@ describe Dropbox::API::Dir do
     it "destroys the dir properly" do
       @dir.destroy
       @dir.is_deleted.should == true
+    end
+
+  end
+
+  describe "#direct_url" do
+
+    it "gives the direct url" do
+      direct_url_object = @dir.direct_url
+      direct_url_object.url.should eql 'https://www.dropbox.com/sh/y2wx4tpk9co1uqg/7wFKjUC2ep'
+      direct_url_object.expires.should eql 'Tue, 01 Jan 2030 00:00:00 +0000'
     end
 
   end
