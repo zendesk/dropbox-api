@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Marcin Bunsch"]
   s.email       = ["marcin@futuresimple.com"]
   s.homepage    = "http://github.com/futuresimple/dropbox-api"
-  s.summary     = "A Ruby client for the DropBox REST API."
-  s.description = "To deliver a more Rubyesque experience when using the DropBox API."
+  s.summary     = "A Ruby client for the Dropbox REST API."
+  s.description = "To deliver a more Rubyesque experience when using the Dropbox API."
 
   s.rubyforge_project = "dropbox-api"
 
