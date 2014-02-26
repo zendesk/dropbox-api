@@ -1,11 +1,11 @@
 Dropbox::API - Dropbox Ruby API client (PeteMS fork...)
 =========
 
-A Ruby client for the DropBox REST API.
+A Ruby client for the Dropbox REST API.
 
 Goal:
 
-To deliver a more Rubyesque experience when using the DropBox API.
+To deliver a more Rubyesque experience when using the Dropbox API.
 
 Current state:
 
@@ -14,11 +14,11 @@ First release, whole API covered.
 Important!!!
 ------------
 
-From version 0.2.0, Dropbox::API::File#delete and Dropbox::API::Dir#delete *are gone*!!
+From version 0.2.0, `Dropbox::API::File#delete` and `Dropbox::API::Dir#delete` *are gone*!!
 
 The reason is that it's based on Hashie::Mash and was screwing Hash#delete.
 
-It is replaced with Dropbox::API::File#destroy and Dropbox::API::Dir#destroy.
+It is replaced with `Dropbox::API::File#destroy` and `Dropbox::API::Dir#destroy`.
 
 Installation
 ------------
@@ -43,9 +43,10 @@ In order to use this client, you need to have an app created on https://www.drop
 Once you have it, put this configuration somewhere in your code, before you start working with the client.
 
 ```ruby
-Dropbox::API::Config.app_key    = YOUR_APP_TOKEN
+Dropbox::API::Config.app_key    = YOUR_APP_KEY
 Dropbox::API::Config.app_secret = YOUR_APP_SECRET
-Dropbox::API::Config.mode       = "sandbox" # if you have a single-directory app or "dropbox" if it has access to the whole dropbox
+Dropbox::API::Config.mode       = "sandbox" # if you have a single-directory app
+# Dropbox::API::Config.mode       = "dropbox" # if your app has access to the whole dropbox
 ```
 
 Dropbox::API::Client
@@ -53,6 +54,9 @@ Dropbox::API::Client
 
 The client is the base for all communication with the API and wraps around almost all calls
 available in the API.
+
+Web-based Authorization
+-----------------------
 
 In order to create a Dropbox::API::Client object, you need to have the configuration set up for OAuth.
 Second thing you need is to have the user authorize your app using OAuth. Here's a short intro
@@ -85,19 +89,20 @@ Dropbox::API supplies you with a helper rake which will authorize a single clien
 In order to have this rake available, put this on your Rakefile:
 
 ```ruby
+require "dropbox-api"
 require "dropbox-api/tasks"
 Dropbox::API::Tasks.install
 ```
 
 You will notice that you have a new rake task - dropbox:authorize
 
-When you call this Rake task, it will ask you to provide the consumer key and secret. Afterwards it will present you with an authorize url on Dropbox.
+When you call this Rake task, it will ask you to provide the app key and app secret. Afterwards it will present you with an authorize url on Dropbox.
 
 Simply go to that url, authorize the app, then press enter in the console.
 
 The rake task will output valid ruby code which you can use to create a client.
 
-What differs this from the DropBox Ruby SDK?
+What differs this from the Dropbox Ruby SDK?
 --------------------------------------------
 
 A few things:
