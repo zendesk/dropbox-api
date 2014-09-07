@@ -1,6 +1,7 @@
 require "oauth"
 require "multi_json"
 require "hashie"
+require 'backports'
 
 module Dropbox
   module API
