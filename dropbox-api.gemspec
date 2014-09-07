@@ -31,5 +31,4 @@ Gem::Specification.new do |s|
   if RUBY_VERSION < "1.9"
     s.add_development_dependency 'ruby-debug19'
   end
-
 end
