@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: put
-    uri: https://api-content.dropbox.com/1/files_put/dropbox/qux.txt?
+    uri: https://api-content.dropbox.com/1/files_put/dropbox/qux.txt
     body:
       encoding: UTF-8
       string: spec file
@@ -50,7 +50,7 @@ http_interactions:
         9, "modified": "Mon, 10 Feb 2014 19:16:34 +0000", "client_mtime": "Mon, 10
         Feb 2014 19:16:34 +0000", "path": "/qux.txt", "is_dir": false, "icon": "page_white_text",
         "root": "dropbox", "mime_type": "text/plain", "size": "9 bytes"}'
-    http_version: 
+    http_version:
   recorded_at: Mon, 10 Feb 2014 20:29:43 GMT
 - request:
     method: post
@@ -110,6 +110,6 @@ http_interactions:
         "Wed, 31 Dec 1969 23:59:59 +0000", "path": "/qux.txt", "is_dir": false, "icon":
         "page_white_text", "root": "dropbox", "mime_type": "text/plain", "size": "0
         bytes"}'
-    http_version: 
+    http_version:
   recorded_at: Mon, 10 Feb 2014 20:29:50 GMT
 recorded_with: VCR 2.8.0

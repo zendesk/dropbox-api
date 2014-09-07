@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: put
-    uri: https://api-content.dropbox.com/1/files_put/dropbox/test%20,%7C!@%23$%25%5E&*%7Bb%7D%5B%5D.;'.,%3C%3E%3F:.txt?
+    uri: https://api-content.dropbox.com/1/files_put/dropbox/test%20,%7C!@%23$%25%5E&*%7Bb%7D%5B%5D.;'.,%3C%3E%3F:.txt
     body:
       encoding: UTF-8
       string: Some file
@@ -51,6 +51,6 @@ http_interactions:
         Feb 2014 18:14:03 +0000", "path": "/test ,|!@#$%^&*{b}[].;''.,<>?:.txt", "is_dir":
         false, "icon": "page_white_text", "root": "dropbox", "mime_type": "text/plain",
         "size": "9 bytes"}'
-    http_version: 
+    http_version:
   recorded_at: Mon, 10 Feb 2014 20:29:10 GMT
 recorded_with: VCR 2.8.0

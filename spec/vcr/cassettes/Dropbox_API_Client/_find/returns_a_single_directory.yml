@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.dropbox.com/1/metadata/dropbox/awesome-tests?
+    uri: https://api.dropbox.com/1/metadata/dropbox/awesome-tests
     body:
       encoding: US-ASCII
       string: ''
@@ -58,6 +58,6 @@ http_interactions:
         "Mon, 10 Feb 2014 19:03:45 +0000", "path": "/awesome-tests/delta-test-foo.txt",
         "is_dir": false, "icon": "page_white_text", "root": "dropbox", "mime_type":
         "text/plain", "size": "9 bytes"}], "size": "0 bytes"}'
-    http_version: 
+    http_version:
   recorded_at: Mon, 10 Feb 2014 20:28:54 GMT
 recorded_with: VCR 2.8.0

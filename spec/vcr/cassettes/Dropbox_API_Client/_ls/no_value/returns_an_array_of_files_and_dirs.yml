@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.dropbox.com/1/metadata/dropbox/?
+    uri: https://api.dropbox.com/1/metadata/dropbox/
     body:
       encoding: US-ASCII
       string: ''
@@ -110,6 +110,6 @@ http_interactions:
         Feb 2014 18:14:02 +0000", "path": "/test.txt", "is_dir": false, "icon": "page_white_text",
         "root": "dropbox", "mime_type": "text/plain", "size": "9 bytes"}], "icon":
         "folder"}'
-    http_version: 
+    http_version:
   recorded_at: Mon, 10 Feb 2014 20:28:55 GMT
 recorded_with: VCR 2.8.0

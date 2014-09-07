@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: put
-    uri: https://api-content.dropbox.com/1/files_put/dropbox/spec-test-1392058752.jpg?
+    uri: https://api-content.dropbox.com/1/files_put/dropbox/spec-test-1392058752.jpg
     body:
       encoding: UTF-8
       string: !binary |-
@@ -331,11 +331,11 @@ http_interactions:
         10 Feb 2014 20:30:20 +0000", "path": "/spec-test-1392058752.jpg", "is_dir":
         false, "icon": "page_white_picture", "root": "dropbox", "mime_type": "image/jpeg",
         "size": "12.3 KB"}'
-    http_version: 
+    http_version:
   recorded_at: Mon, 10 Feb 2014 20:30:22 GMT
 - request:
     method: get
-    uri: https://api-content.dropbox.com/1/thumbnails/dropbox/spec-test-1392058752.jpg?
+    uri: https://api-content.dropbox.com/1/thumbnails/dropbox/spec-test-1392058752.jpg
     body:
       encoding: US-ASCII
       string: ''
@@ -422,6 +422,6 @@ http_interactions:
         9EqlqOnQX6ATp8y/ddThk9we1ddPFyS5Z6o46mDjfmp6M8Y0iCa5uhFbRPLK
         xOEUZPX9B7mvSdG8MFI0fU2D9/IQ/KP94/xH9Pr1ra0jSLPSYPKsoVRerN/E
         x9Se9aNaYrHus7Q0RnhcAqSvN3YxEVAqooVQMAAYxT6KK4D0bWP/2Q==
-    http_version: 
+    http_version:
   recorded_at: Mon, 10 Feb 2014 20:30:24 GMT
 recorded_with: VCR 2.8.0
