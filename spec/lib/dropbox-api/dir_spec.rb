@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe Dropbox::API::Dir, vcr: true do
+describe Dropbox::API::Dir, :vcr => true do
 
   before do
     @client = Dropbox::Spec.instance

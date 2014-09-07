@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe Dropbox::API::File, vcr: true do
+describe Dropbox::API::File, :vcr => true do
 
   before do
     @client = Dropbox::Spec.instance
@@ -17,7 +17,7 @@ describe Dropbox::API::File, vcr: true do
     end
 
   end
-  
+
   describe "#move" do
 
     it "moves the file properly" do
@@ -88,15 +88,15 @@ describe Dropbox::API::File, vcr: true do
   end
 
   describe "#copy_ref" do
-    
+
     it "returns a copy_ref object" do
-      
+
       result = @file.copy_ref
       result.should be_an_instance_of(Dropbox::API::Object)
       result.keys.sort.should == ['copy_ref', 'expires']
-      
+
     end
-    
+
   end
 
   describe "#direct_url" do

@@ -1,7 +1,7 @@
 require "cgi"
 require "spec_helper"
 
-describe Dropbox::API::OAuth, vcr: true do
+describe Dropbox::API::OAuth, :vcr => true do
 
   describe ".consumer" do
 

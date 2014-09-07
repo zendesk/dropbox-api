@@ -2,7 +2,7 @@
 require "spec_helper"
 require "tempfile"
 
-describe Dropbox::API::Client, vcr: true do
+describe Dropbox::API::Client, :vcr => true do
 
   before do
     @client = Dropbox::Spec.instance

@@ -1,7 +1,7 @@
 require "spec_helper"
 require "fileutils"
 
-describe Dropbox::API::File, vcr: true do
+describe Dropbox::API::File, :vcr => true do
 
   before do
     @io       = StringIO.new
