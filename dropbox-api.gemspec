@@ -22,7 +22,6 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'rspec','2.14.1'
   s.add_development_dependency 'rake', '10.1.0'
-  s.add_development_dependency 'rake', '10.1.0'
   s.add_development_dependency 'simplecov', '~> 0.8.2'
   s.add_development_dependency 'yajl-ruby', '~> 1.2.0'
 
