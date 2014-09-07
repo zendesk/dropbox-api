@@ -136,7 +136,7 @@ describe Dropbox::API::Client, :vcr => true do
       @file = File.open(@filename, "w") {|f| f.write "a"*@size}
     end
 
-    it "puts a 5MB file in dropbox", vcr: { match_requests_on: [:host] } do
+    it "puts a 5MB file in dropbox", vcr: { :match_requests_on => [:host] } do
       filename = "#{Dropbox::Spec.test_dir}/test-5MB-#{Dropbox::Spec.namespace}.txt"
       response = @client.chunked_upload filename, File.open(@filename)
       if ENV['RECORDING'] == 'true'
@@ -147,7 +147,7 @@ describe Dropbox::API::Client, :vcr => true do
       response.bytes.should == @size
     end
 
-    it "yields current offset and upload id", vcr: { match_requests_on: [:host] } do
+    it "yields current offset and upload id", vcr: { :match_requests_on => [:host] } do
       filename = "#{Dropbox::Spec.test_dir}/test-yield-#{Dropbox::Spec.namespace}.txt"
       log_offset = ""
       log_upload = ""
