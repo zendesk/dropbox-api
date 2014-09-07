@@ -27,8 +27,4 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'webmock', '~> 1.15.0'
   s.add_development_dependency 'vcr', '~> 2.8.0'
-
-  if RUBY_VERSION < "1.9"
-    s.add_development_dependency 'ruby-debug19'
-  end
 end
