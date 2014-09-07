@@ -20,8 +20,11 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec','2.14.1'
   s.add_development_dependency 'rake', '10.1.0'
   s.add_development_dependency 'simplecov', '0.7.1'
-  s.add_development_dependency 'ruby-debug19', '0.11.6'
   s.add_development_dependency 'yajl-ruby', '1.1.0'
+
+  if RUBY_VERSION < "1.9"
+    s.add_development_dependency 'ruby-debug19', '0.11.6'
+  end
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
