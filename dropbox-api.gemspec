@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
   s.homepage    = "http://github.com/futuresimple/dropbox-api"
   s.summary     = "A Ruby client for the Dropbox REST API."
   s.description = "To deliver a more Rubyesque experience when using the Dropbox API."
+  s.license     = 'MIT'
 
   s.rubyforge_project = "dropbox-api"
 
