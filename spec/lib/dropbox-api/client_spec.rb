@@ -143,10 +143,10 @@ describe Dropbox::API::Client do
     it "copies a file from a copy_ref" do
       filename = "test/searchable-test-#{Dropbox::Spec.namespace}.txt"
       @client.upload filename, "Some file"
-      response = @client.search "searchable-test-#{Dropbox::Spec.namespace}", :path => 'test'      
+      response = @client.search "searchable-test-#{Dropbox::Spec.namespace}", :path => 'test'
       ref = response.first.copy_ref['copy_ref']
       @client.copy_from_copy_ref ref, "#{filename}.copied"
-      response = @client.search "searchable-test-#{Dropbox::Spec.namespace}.txt.copied", :path => 'test'   
+      response = @client.search "searchable-test-#{Dropbox::Spec.namespace}.txt.copied", :path => 'test'
       response.size.should == 1
       response.first.class.should == Dropbox::API::File
     end
@@ -195,6 +195,28 @@ describe Dropbox::API::Client do
       files.first.is_deleted.should == true
       files.first.path.should == delete_filename
       files.last.path.should == filename
+    end
+
+    context "with extra params" do
+
+      let(:response) do
+        {
+          'cursor' => nil,
+          'has_more' => false,
+          'entries' => []
+        }
+      end
+
+      let(:params) do
+        { :path_prefix => 'my_path' }
+
+      end
+
+      it "passes them to raw delta" do
+        @client.raw.should_receive(:delta).with(params).and_return(response)
+        @client.delta nil, params
+      end
+
     end
   end
 
