@@ -247,6 +247,15 @@ delta.cursor # => 'abc123'
 delta.entries # => [#<Dropbox::API::File>, #<Dropbox::API::Dir>]
 ```
 
+Optionally, you can set additional parameters, e.g. **path_prefix**. You can find all available parameters in the [Dropbox API documentation](https://www.dropbox.com/developers/core/docs#delta).
+
+```ruby
+delta = client.delta 'abc123', path_prefix: '/Path/To/My/Folder'
+delta.cursor # => 'abc123'
+delta.entries # => [#<Dropbox::API::File>, #<Dropbox::API::Dir>]
+```
+
+
 Dropbox::API::File and Dropbox::API::Dir methods
 ----------------------------
 
