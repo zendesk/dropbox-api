@@ -18,8 +18,7 @@ module Dropbox
       include Dropbox::API::Client::Files
 
       def find(filename)
-        data = self.raw.metadata(:path => filename)
-        data.delete('contents')
+        data = self.raw.metadata(:path => filename, :list => false)
         Dropbox::API::Object.convert(data, self)
       end
 
