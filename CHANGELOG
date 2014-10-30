@@ -1,2 +1,4 @@
+0.4.4
++ Add Dropbox::API::Dir#hash which returns the dropbox hash
 0.4.3
 + Allow passing of parameters to Dropbox::API::Client#delta
