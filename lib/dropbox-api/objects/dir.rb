@@ -19,6 +19,10 @@ module Dropbox
         Dropbox::API::Object.init(response, client)
       end
 
+      def hash
+        self[:hash]
+      end
+
     end
 
   end
