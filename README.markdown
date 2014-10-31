@@ -210,7 +210,7 @@ client.upload 'file.txt', 'file body' # => #<Dropbox::API::File>
 Stores a file from a File object under a provided name and returns a Dropbox::API::File object. It should be used for larger files.
 
 ```ruby
-client.upload 'file.txt', File.open('file.txt') # => #<Dropbox::API::File>
+client.chunked_upload 'file.txt', File.open('file.txt') # => #<Dropbox::API::File>
 ```
 
 ### Dropbox::API::Client#download
