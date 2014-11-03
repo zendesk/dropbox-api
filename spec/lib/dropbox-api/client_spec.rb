@@ -135,6 +135,21 @@ describe Dropbox::API::Client do
 
   end
 
+  describe "#destroy" do
+
+    before do
+      @client = Dropbox::Spec.instance
+      @filename = "#{Dropbox::Spec.test_dir}/spec-test-#{Time.now.to_i}.txt"
+      @file = @client.upload @filename, "spec file"
+    end
+
+    it "destroys the file properly" do
+      file = @client.destroy(@filename)
+      file.is_deleted.should == true
+    end
+
+  end
+
   describe "#search" do
 
     let(:term) { "searchable-test-#{Dropbox::Spec.namespace}" }

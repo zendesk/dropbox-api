@@ -173,6 +173,16 @@ When provided a path, returns a single file or directory
 client.find 'file.txt' # => #<Dropbox::API::File>
 ```
 
+### Dropbox::API::Client#destroy
+
+Removes the file specified by path
+
+Returns a Dropbox::API::File object of the deleted file
+
+```ruby
+client.destroy 'file.txt' # => #<Dropbox::API::File>
+```
+
 ### Dropbox::API::Client#ls
 
 When provided a path, returns a list of files or directories within that path

@@ -37,6 +37,11 @@ module Dropbox
         Dropbox::API::Dir.init(response, self)
       end
 
+      def destroy(path, options = {})
+        response = raw.delete({ :path => path }.merge(options))
+        Dropbox::API::Object.convert(response, self)
+      end
+
       def search(term, options = {})
         options[:path] ||= ''
         results = raw.search({ :query => term }.merge(options))
