@@ -1,3 +1,5 @@
+0.4.6
++ Add Dropbox::API::Client#destroy
 0.4.5
 + Add Dropbox::API::Client#chunked_upload
 0.4.4
