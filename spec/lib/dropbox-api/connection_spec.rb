@@ -85,6 +85,14 @@ describe Dropbox::API::Connection do
      end.should raise_error(Dropbox::API::Error, '503 - rate limited. Retry after: 50')
    end
 
+    it "raises a Dropbox::API::Error when the response is a 503 Service Unavailable" do
+      message = 'we are down'
+      response = Net::HTTPServiceUnavailable.new('1.1', 503, message)
+      lambda do
+       @connection.request { response }
+     end.should raise_error(Dropbox::API::Error, "503 - #{message}")
+   end
+
     it "raises a Dropbox::API::Error::StorageQuota when the response is a 507" do
       response = double :code => 507, :body => '{ "error": "quote limit" }'
       lambda do
