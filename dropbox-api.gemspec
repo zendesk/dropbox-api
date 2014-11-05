@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = "dropbox-api"
 
-  s.add_dependency 'multi_json', '~> 1.7.9'
+  s.add_dependency 'multi_json', '~> 1.7'
   s.add_dependency 'oauth', '~> 0.4.7'
   s.add_dependency 'hashie', '~> 2.0.5'
 
@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'yajl-ruby', '~> 1.2.0'
 
   if RUBY_VERSION < "1.9"
-    s.add_development_dependency 'ruby-debug19' 
+    s.add_development_dependency 'ruby-debug19'
   end
 
   s.files         = `git ls-files`.split("\n")
