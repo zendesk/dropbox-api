@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = "dropbox-api"
 
-  s.add_dependency 'multi_json', '~> 1.7'
+  s.add_dependency 'multi_json', '~> 1.10'
   s.add_dependency 'oauth', '~> 0.4.7'
   s.add_dependency 'hashie', '~> 2.0.5'
 
