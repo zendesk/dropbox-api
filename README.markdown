@@ -363,7 +363,8 @@ In order to run tests, you need to have an application created and authorized. P
 
 Check out spec/connection.sample.yml for an example.
 
-Copyright
----------
+## Copyright and license
 
-Copyright (c) 2011 Marcin Bunsch, Future Simple Inc. See LICENSE for details.
+Copyright 2020 Zendesk
+
+Licensed under the [Apache License, Version 2.0](LICENSE)
