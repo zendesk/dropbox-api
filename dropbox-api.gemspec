@@ -5,12 +5,12 @@ require "dropbox-api/version"
 Gem::Specification.new do |s|
   s.name        = "dropbox-api"
   s.version     = Dropbox::API::VERSION
-  s.authors     = ["Marcin Bunsch"]
-  s.email       = ["marcin@futuresimple.com"]
+  s.authors     = ["Zendesk"]
+  s.email       = ["opensource@zendesk.com"]
   s.homepage    = "http://github.com/futuresimple/dropbox-api"
   s.summary     = "A Ruby client for the Dropbox REST API."
   s.description = "To deliver a more Rubyesque experience when using the Dropbox API."
-  s.license     = 'MIT'
+  s.license     = 'Apache License Version 2.0'
 
   s.rubyforge_project = "dropbox-api"
 
