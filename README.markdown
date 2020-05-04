@@ -365,6 +365,6 @@ Check out spec/connection.sample.yml for an example.
 
 ## Copyright and license
 
-Copyright 2020 Zendesk
+Copyright 2011 Zendesk
 
 Licensed under the [Apache License, Version 2.0](LICENSE)
