@@ -363,6 +363,12 @@ In order to run tests, you need to have an application created and authorized. P
 
 Check out spec/connection.sample.yml for an example.
 
+## Releasing new version of gem
+
+1. Update version in [lib/dropbox-api/version.rb](lib/dropbox-api/version.rb) and push to `master`
+2. Create new GitHub release with tag name starting with `v` and the version, for example `v1.0.0`
+3. Gem will be automatically built and pushed to rubygems.org with GitHub Action
+
 ## Copyright and license
 
 Copyright 2011 Zendesk
