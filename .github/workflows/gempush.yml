@@ -10,11 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Ruby 2.6
-      uses: actions/setup-ruby@v1
+    - uses: zendesk/checkout@v2
+    - name: Set up Ruby
+      uses: zendesk/setup-ruby@v1
       with:
-        version: 2.6.x
+        ruby-version: 2.6
 
     - name: Publish to RubyGems
       run: |
